@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
+import path from "path";
 import indexRouter from './routes/index.routes.js';
 
 const app = express();
@@ -15,8 +16,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 // Configuramos EJS
 app.set('view engine', 'ejs');
-//app.set('views', path.join(__dirname, '..', 'views'));
-
+const currentModuleURL = new URL(import.meta.url);
+const currentDirectory = path.dirname(currentModuleURL.pathname);
+app.set('views', path.join(currentDirectory, '..', 'views'));
 // Usamos las rutas
 app.use('/', indexRouter);
 // Not found route
