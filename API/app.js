@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 const currentModuleURL = new URL(import.meta.url);
 const currentDirectory = path.dirname(currentModuleURL.pathname);
-app.set('views', path.join(currentDirectory, '..', 'views'));
+app.set('views', path.join(currentDirectory, '../', 'views'));
 // Usamos las rutas
 app.use('/', indexRouter);
 // Not found route
